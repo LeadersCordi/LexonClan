@@ -1,0 +1,32 @@
+name: LexonClan
+version: 1.0.0
+main: com.lexon.clan.LexonClan
+api-version: '1.21'
+description: Advanced Clan Plugin with GUI-based management - Developed by CordiDev
+author: CordiDev
+
+softdepend:
+  - PlaceholderAPI
+  - Vault
+  - FancyNpcs
+
+commands:
+  klan:
+    description: Ana clan komutu
+    usage: /klan ayarlar
+    aliases:
+      - clan
+
+permissions:
+  lexonclan.use:
+    description: Clan sistemini kullanma yetkisi
+    default: true
+  lexonclan.premium:
+    description: Premium clan olusturma yetkisi
+    default: false
+  lexonclan.admin:
+    description: Clan admin yetkisi
+    default: op
+  lexonclan.bypass:
+    description: Clan limitlerini atlama yetkisi
+    default: op

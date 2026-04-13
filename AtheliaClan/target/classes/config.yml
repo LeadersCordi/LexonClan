@@ -1,0 +1,287 @@
+# LexonClan Configuration
+# Lexon Clan Management System
+# Developed by CordiDev
+
+# VERİTABANI AYARLARI
+database:
+  # Depolama tipi: 'yml' veya 'mysql'
+  type: yml
+  
+  mysql:
+    host: localhost
+    port: 3306
+    database: lexonclan
+    username: root
+    password: ""
+    pool:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+# GENEL AYARLAR
+settings:
+  # Clan ismi ayarları
+  clan-name:
+    min-length: 3
+    max-length: 16
+    allowed-characters: "^[a-zA-Z0-9ğüşıöçĞÜŞİÖÇ ]+$"
+    blocked-words:
+      - "admin"
+      - "mod"
+      - "staff"
+      - "owner"
+      - "yetkili"
+  
+  # Clan etiketi ayarları
+  clan-tag:
+    min-length: 2
+    max-length: 4
+    allowed-characters: "^[a-zA-Z0-9]+$"
+  
+  # Üye limitleri
+  member-limits:
+    normal-clan: 10
+    premium-clan: 50
+  
+  # Maksimum rol sayısı
+  max-roles: 7
+  
+  # Chat izolasyonu süresi (saniye)
+  chat-isolation-timeout: 60
+
+# COIN SİSTEMİ (Üye Limiti Arttırma)
+coin:
+  material: GOLD_BLOCK
+  name: "<gold>★ Lexon Coin</gold>"
+  lore:
+    - ""
+    - "<gray>Clan üye limitini arttırmak için</gray>"
+    - "<gray>kullanılabilir.</gray>"
+    - ""
+    - "<white>Kullanım:</white> <gray>/klan ayarlar</gray>"
+  
+  price-per-member: 5
+  
+  increase-options:
+    - amount: 5
+      price: 25
+    - amount: 10
+      price: 45
+    - amount: 25
+      price: 100
+    - amount: 50
+      price: 175
+
+# NPC AYARLARI (Herkese Açık Clanlar)
+npc:
+  enabled: true
+  fancynpc-id: -1
+  manual-spawn:
+    enabled: false
+    world: "world"
+    x: 0.0
+    y: 64.0
+    z: 0.0
+  display-name: "<gold>★ Klan Merkezi</gold>"
+  skin:
+    texture: ""
+    signature: ""
+
+# VARSAYILAN ROLLER (Sadece Lider ve Üye)
+default-roles:
+  leader:
+    name: "<gold>★ Lider</gold>"
+    priority: 100
+    permissions:
+      - "clan.manage"
+      - "clan.invite"
+      - "clan.kick"
+      - "clan.promote"
+      - "clan.demote"
+      - "clan.storage.view"
+      - "clan.storage.deposit"
+      - "clan.storage.withdraw"
+      - "clan.roles.manage"
+      - "clan.settings"
+      - "clan.delete"
+      - "clan.chat"
+      - "clan.announce"
+      - "clan.roles.create"
+      - "clan.roles.delete"
+      - "clan.privacy"
+  
+  member:
+    name: "<gray>Üye</gray>"
+    priority: 10
+    permissions:
+      - "clan.storage.view"
+      - "clan.storage.deposit"
+      - "clan.chat"
+
+# ROL İZİNLERİ (Detaylı)
+role-permissions:
+  clan-manage:
+    permission: "clan.manage"
+    name: "Klan Yönetimi"
+    description: "Tüm klan ayarlarını değiştirebilir"
+    material: COMMAND_BLOCK
+  clan-invite:
+    permission: "clan.invite"
+    name: "Oyuncu Davet"
+    description: "Yeni oyuncuları klana davet edebilir"
+    material: WRITABLE_BOOK
+  clan-kick:
+    permission: "clan.kick"
+    name: "Oyuncu Atma"
+    description: "Üyeleri klandan atabilir"
+    material: BARRIER
+  clan-promote:
+    permission: "clan.promote"
+    name: "Rol Yükseltme"
+    description: "Üyeleri daha yüksek role terfi ettirebilir"
+    material: EMERALD
+  clan-demote:
+    permission: "clan.demote"
+    name: "Rol Düşürme"
+    description: "Üyeleri daha düşük role indirebilir"
+    material: REDSTONE
+  clan-storage-view:
+    permission: "clan.storage.view"
+    name: "Kasa Görüntüleme"
+    description: "Klan kasasını görebilir"
+    material: CHEST
+  clan-storage-deposit:
+    permission: "clan.storage.deposit"
+    name: "Kasaya Eşya Koyma"
+    description: "Kasaya eşya ekleyebilir"
+    material: HOPPER
+  clan-storage-withdraw:
+    permission: "clan.storage.withdraw"
+    name: "Kasadan Eşya Alma"
+    description: "Kasadan eşya alabilir"
+    material: DROPPER
+  clan-roles-manage:
+    permission: "clan.roles.manage"
+    name: "Rol Yönetimi"
+    description: "Yeni roller oluşturabilir ve düzenleyebilir"
+    material: NAME_TAG
+  clan-settings:
+    permission: "clan.settings"
+    name: "Ayarları Değiştirme"
+    description: "Klan gizlilik ve diğer ayarları değiştirebilir"
+    material: COMPARATOR
+  clan-delete:
+    permission: "clan.delete"
+    name: "Klanı Silme"
+    description: "Klanı tamamen silebilir"
+    material: TNT
+  clan-chat:
+    permission: "clan.chat"
+    name: "Klan Sohbeti"
+    description: "Klan sohbetini kullanabilir"
+    material: PAPER
+  clan-announce:
+    permission: "clan.announce"
+    name: "Duyuru Yapma"
+    description: "Klan geneli duyuru yapabilir"
+    material: BELL
+  clan-roles-create:
+    permission: "clan.roles.create"
+    name: "Rol Oluşturma"
+    description: "Yeni roller oluşturabilir"
+    material: LIME_DYE
+  clan-roles-delete:
+    permission: "clan.roles.delete"
+    name: "Rol Silme"
+    description: "Mevcut rolleri silebilir"
+    material: RED_DYE
+  clan-privacy:
+    permission: "clan.privacy"
+    name: "Gizlilik Ayarı"
+    description: "Klanın açık/kapalı durumunu değiştirebilir"
+    material: IRON_DOOR
+
+# MESAJLAR
+messages:
+  prefix: "<gray>[</gray><gold>★</gold><gray>]</gray> "
+  
+  # Genel mesajlar
+  no-permission: "<red>Bu işlem için yetkiniz bulunmuyor!</red>"
+  player-only: "<red>Bu komut sadece oyuncular tarafından kullanılabilir!</red>"
+  invalid-usage: "<gray>Kullanım:</gray> <white>/klan ayarlar</white>"
+  
+  # Clan mesajları
+  clan-created: "<green>Klanınız başarıyla oluşturuldu!</green>\n<white>Hoş geldiniz,</white> <gold>{clan}</gold><white>!</white>"
+  clan-deleted: "<red>Klan silindi:</red> <white>{clan}</white>"
+  clan-already-has: "<red>Zaten bir klana üyesiniz!</red>"
+  clan-not-found: "<red>Klan bulunamadı!</red>"
+  clan-no-clan: "<red>Bir klana üye değilsiniz!</red>"
+  
+  # Premium mesajları
+  premium-required: "<gold>★</gold> <gray>Premium klan için yetkililer ile iletişime geçiniz!</gray>"
+  
+  # Davet mesajları
+  invite-sent: "<green>Davet gönderildi:</green> <white>{player}</white>"
+  invite-received: "\n<gray>━━━━━━━━━━━━━━━━━━━━━━━━</gray>\n\n  <gold>★</gold> <white>Klan Daveti</white>\n\n  <gray>{clan}</gray> <white>sizi klana davet etti!</white>\n\n  <click:run_command:'/klan kabul {clan}'><green>[✓ KABUL ET]</green></click>  <click:run_command:'/klan reddet {clan}'><red>[✗ REDDET]</red></click>\n\n<gray>━━━━━━━━━━━━━━━━━━━━━━━━</gray>\n"
+  invite-accepted: "<green>{player}</green> <gray>daveti kabul etti!</gray>"
+  invite-rejected: "<red>{player}</red> <gray>daveti reddetti.</gray>"
+  invite-expired: "<red>Davet süresi doldu!</red>"
+  already-invited: "<red>Bu oyuncu zaten davet edildi!</red>"
+  already-in-clan: "<red>Bu oyuncu zaten bir klana üye!</red>"
+  
+  # Üye mesajları
+  member-joined: "<green>+</green> <white>{player}</white> <gray>klana katıldı!</gray>"
+  member-left: "<red>-</red> <white>{player}</white> <gray>klandan ayrıldı.</gray>"
+  member-kicked: "<red>✖</red> <white>{player}</white> <gray>klandan atıldı.</gray>"
+  member-promoted: "<green>↑</green> <white>{player}</white> <gray>yükseltildi:</gray> {role}"
+  member-demoted: "<red>↓</red> <white>{player}</white> <gray>düşürüldü:</gray> {role}"
+  cannot-kick-higher: "<red>Sizden yüksek veya eşit roldeki birini atamazsınız!</red>"
+  cannot-promote-higher: "<red>Kendinizden yüksek role yükseltemezsiniz!</red>"
+  clan-full: "<red>Klan üye limiti dolu!</red>"
+  
+  # Depo mesajları
+  storage-no-permission: "<red>Bu işlem için yetkiniz yok!</red>"
+  
+  # Rol mesajları
+  role-created: "<green>Rol oluşturuldu:</green> <white>{role}</white>"
+  role-deleted: "<red>Rol silindi:</red> <white>{role}</white>"
+  role-max-reached: "<red>Maksimum rol sayısına ulaştınız!</red>"
+  role-name-exists: "<red>Bu isimde bir rol zaten var!</red>"
+  
+  # Limit arttırma mesajları
+  limit-increased: "<green>Üye limiti arttırıldı!</green> <gray>Yeni limit:</gray> <white>{limit}</white>"
+  not-enough-coins: "<red>Yeterli coin'iniz yok!</red>\n<gray>Gereken:</gray> <white>{required}</white> <gray>Mevcut:</gray> <white>{current}</white>"
+  
+  # Chat izolasyonu mesajları
+  chat-isolated: "\n<gray>━━━━━━━━━━━━━━━━━━━━━━━━</gray>\n\n  <gold>★</gold> <white>Klan Oluşturma</white>\n\n  <gray>Chat geçici olarak izole edildi.</gray>\n  <white>Lütfen aşağıdaki bilgileri girin.</white>\n\n<gray>━━━━━━━━━━━━━━━━━━━━━━━━</gray>\n"
+  enter-clan-name: "\n<gold>»</gold> <white>Klan ismi girin</white> <gray>(3-16 karakter)</gray>"
+  enter-clan-tag: "\n<gold>»</gold> <white>Klan etiketi girin</white> <gray>(2-4 karakter)</gray>"
+  invalid-clan-name: "<red>Geçersiz klan ismi! Lütfen tekrar deneyin.</red>"
+  invalid-clan-tag: "<red>Geçersiz klan etiketi! Maksimum 4 karakter.</red>"
+  blocked-word: "<red>Bu isim yasaklı kelime içeriyor!</red>"
+  creation-cancelled: "<red>Klan oluşturma iptal edildi.</red>"
+  creation-timeout: "<red>Süre doldu! Klan oluşturma iptal edildi.</red>"
+  type-cancel: "<gray>İptal etmek için 'iptal' yazın.</gray>"
+  
+  # Silme mesajları
+  delete-confirm: "<red>⚠ DİKKAT!</red>\n<gray>Klanınızı silmek istediğinizden emin misiniz?</gray>\n<dark_gray>Bu işlem geri alınamaz!</dark_gray>"
+  delete-cancelled: "<gray>Klan silme iptal edildi.</gray>"
+  
+  # Gizlilik mesajları
+  privacy-changed: "<green>Klan gizliliği değiştirildi:</green> {privacy}"
+  privacy-private: "<red>Özel</red>"
+  privacy-public: "<green>Açık</green>"
+  
+  # Herkese açık clan mesajları
+  joined-public-clan: "<green>Başarıyla katıldınız:</green> <gold>{clan}</gold>"
+
+# SOHBET AYARLARI
+chat:
+  # Klan etiketi chatte görünsün mü?
+  show-clan-tag: true
+  # Normal klan etiketi formatı (gri)
+  normal-format: "<gray>[{tag}]</gray>"
+  # Premium klan etiketi formatı (sarı/gold)
+  premium-format: "<gold>[{tag}]</gold>"
