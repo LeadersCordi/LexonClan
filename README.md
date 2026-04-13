@@ -1,0 +1,2 @@
+# LexonClan
+Gelişmiş Klan Plugini
